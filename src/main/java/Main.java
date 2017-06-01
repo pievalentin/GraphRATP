@@ -21,15 +21,15 @@ public class Main {
         }
         System.out.println(list.size());*/
         int size=0;
-        for (int i = 0; i < graph.getAdj().length; i++) {
+        /*for (int i = 0; i < graph.getAdj().length; i++) {
             size+=graph.getAdj()[i].size();
             System.out.println(graph.getAdj()[i].toString());
-        }
+        }*/
         System.out.println(size);
         graph.printAdj("Invalides");
 
-        for (int i = 0; i < graph.getNodes().size(); i++) {
-           // graph.getNodes().get(i).print();
-        }
+
+
+        ReadJSON.readStation();
     }
 }

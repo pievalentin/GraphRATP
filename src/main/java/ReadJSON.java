@@ -7,8 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Created by Pierre Valentin on 01/06/2017.
  */
 public  class ReadJSON {
-    public static Station[] readStation() throws IOException {
+    public static void readStation() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(new File("test.json"), Station[].class);
+        Station[] stations= mapper.readValue(new File("stations.json"), Station[].class);
+        Ligne[] lignes= mapper.readValue(new File("lignes.json"), Ligne[].class);
+        System.out.println(stations.toString()+lignes.toString());
     }
+
 }
