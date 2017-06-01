@@ -148,7 +148,7 @@ try{
         return adj;
     }
 
-    public int getGraphOrder() {//todo
+    public int getGraphOrder() {
         return nodes.size();
     }
 
