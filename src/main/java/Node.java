@@ -34,6 +34,11 @@ public class Node {
 
     }
 
+    public void print(){
+        System.out.println("Nom : "+this.getNom()+"  ");
+        System.out.print("ligne : "+this.getMetro());
+    }
+
     public String getCommune() {
         return commune;
     }
