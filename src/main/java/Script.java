@@ -85,7 +85,7 @@ public class Script {
                     }
                 }
             }
-            else if (id2 > 10000){ // Si id2 est l'id du trajet
+            else if (id2 >10000){ // Si id2 est l'id du trajet
                 int i = 0;
                 for (TempTransfer y:tempList
                         ) {

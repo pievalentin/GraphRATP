@@ -6,26 +6,21 @@ import java.util.List;
  * Created by sami- on 30/05/2017.
  */
 public class Graph {
-    public List<Node> getNodes() {
-        return nodes;
-    }
 
     private List<Node> nodes=new ArrayList<Node>();
 
-    public List<Integer>[] getAdj() {
-        return adj;
-    }
 
-    private List<Integer>[] adj=new ArrayList[302];
 
-    /*public int indexOf(Node nodeToFind){
+    private List<Integer>[] adj;
+
+    public int indexOfName(String name){
         int index=0;
         for (int i = 0; i < nodes.size(); i++) {
-            if (nodes.get(i).getName().equals(nodeToFind.getName())){
+            if (nodes.get(i).getName().equals(name)){
               index=i;
             }
         }  return index;
-    }*/
+    }
 
     public void printAdj(String name){
         for (int i = 0; i < nodes.size(); i++) {
@@ -80,7 +75,7 @@ public class Graph {
     }
 
     public void addTransfersToAdjList() throws IOException {
-
+        adj=new ArrayList[getGraphOrder()];
         //create adj
         for (int i = 0; i < adj.length; i++) {
             adj[i]=new ArrayList<Integer>();
@@ -143,5 +138,21 @@ try{
     System.out.println(e);
 }
 
+    }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
+    public List<Integer>[] getAdj() {
+        return adj;
+    }
+
+    public int getGraphOrder() {//todo
+        return nodes.size();
+    }
+
+    public List<Integer> neighbors(Integer integer) {//todo
+        return new ArrayList<>();
     }
 }
