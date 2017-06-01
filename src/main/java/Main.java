@@ -10,9 +10,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         //System.out.println("hello world");
         Graph graph=new Graph();
-        graph.addNodesToList();
-        System.out.println(graph.getNodes().size());
-        graph.addTransfersToAdjList();
+        System.out.println(graph.getNodes().length);
 
            /* List<Transfer> list = Script.buildTransferList("GTFS/RATP_GTFS_METRO_1/transfers.txt");
         for (int i = 0; i < list.size(); i++) {
@@ -26,10 +24,8 @@ public class Main {
             System.out.println(graph.getAdj()[i].toString());
         }*/
         System.out.println(size);
-        graph.printAdj("Invalides");
-
-
-
-        ReadJSON.readStation();
+        //graph.printAdj("Invalides");
+        graph.printAdj();
+        BFSShortestPaths bfsShortestPaths = new BFSShortestPaths(graph,"Bastille","Parmentier");
     }
 }

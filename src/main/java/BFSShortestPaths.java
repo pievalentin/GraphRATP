@@ -1,6 +1,7 @@
 import java.awt.DisplayMode;
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ public class BFSShortestPaths {
     private Graph graph;
     private Set<Integer> pathSet;
     private int s;
+    private int t;
 
     private boolean[] marked;
     private int[] previous;
@@ -18,10 +20,10 @@ public class BFSShortestPaths {
     private int[] excentricity;
 
 
-    public BFSShortestPaths(Graph graph, String name) {
+    public BFSShortestPaths(Graph graph, String name,String name2) {//todo remplacer variable s par this.s
         this.graph=graph;
         this.s=graph.indexOfName(name);
-
+        this.t=graph.indexOfName(name2);
 
         exploreStart(s);
         //excentricity();
@@ -69,11 +71,26 @@ public class BFSShortestPaths {
             }
         }
 
-        System.out.println("bfs algorithm path : " + pathSet.toString());
+        System.out.println("bfs algorithm path : "+pathSet.toString() );
+        System.out.println("bfs algorithm path : " ); //print(pathSet);
         System.out.print("marked : ");disp(marked);
         System.out.print("distances : ");disp(distance);
         System.out.print("previouses : ");disp(previous);
-        System.out.print("shortest path to 0 : ");printSP(0);
+        System.out.print("shortest path to 0 : ");printSP(t);
+    }
+
+    private void print(Set<Integer> pathSet) {
+        Iterator<Integer> it = pathSet.iterator();
+        while(it.hasNext()){
+            System.out.println(graph.getNodes()[it.next()].getNom() + " | ");
+        }
+    }
+
+    private void print(ArrayList<Integer> pathSet) {
+        Iterator<Integer> it = pathSet.iterator();
+        while(it.hasNext()){
+            System.out.println(graph.getNodes()[it.next()].getNom() + " | ");
+        }
     }
 
     private void excentricity(){
@@ -99,15 +116,16 @@ public class BFSShortestPaths {
     public void printSP(int v) {
         ArrayList<Integer> path=new ArrayList<Integer>();
         path.add(v);
-        if (previous[v]>0){
+        if (previous[v]>0){//if (previous[v]>0){
             path.add(0,previous[v]);
             printSPbis(previous[v],path);
         }
         System.out.println(path.toString());
+        print(path);
     }
 
     public void printSPbis(int v, ArrayList<Integer>path) {
-        if (previous[v]>0){
+        if (previous[v]>0){//if (previous[v]>0){
             path.add(0,previous[v]);
             printSPbis(previous[v],path);
         }

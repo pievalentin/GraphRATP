@@ -34,6 +34,9 @@ public class Node {
 
     }
 
+    public Node() {
+    }
+
     public void print(){
         System.out.println("Nom : "+this.getNom()+"  ");
         System.out.print("ligne : "+this.getMetro());
