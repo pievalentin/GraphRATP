@@ -1,70 +1,93 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by sami- on 30/05/2017.
+ * Created by Pierre Valentin on 01/06/2017.
  */
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value = {"lignes","isHub","routes","stations","isAmbiguous" })
 public class Node {
+    private String lat;
+    private String lng;
+    private String nom;
+    private String type;
+    private int num;
+    private int[] metro;
+    private String commune;
 
-    private List<Integer> id= new ArrayList<Integer>();;
-    private double lat;
-    private double lon;
-    private String name;
 
-    public Node(int id, double lat, double lon, String name) {
-        this.id.add(id);
+    public Node(String lat, String lng, String nom, String type, int num, int[] metro, String commune) {
         this.lat = lat;
-        this.lon = lon;
-        this.name = name;
+        this.lng = lng;
+        this.nom = nom;
+        this.type = type;
+        this.num = num;
+        this.metro = metro;
+        this.commune = commune;
     }
-    public Node(Node nodeClone) {
-        this.id.add((Integer) nodeClone.getId().get(0));
-        this.lat = nodeClone.getLat();
-        this.lon = nodeClone.getLon();
-        this.name = nodeClone.getName();
-    }
-    public Node() {
+    public Node(Node nodeToClone) {
+        this.lat = nodeToClone.getLat();
+        this.lng = nodeToClone.getLng();
+        this.nom = nodeToClone.getNom();
+        this.type = nodeToClone.getType();
+        this.num = nodeToClone.getNum();
+        this.metro = nodeToClone.getMetro();
+        this.commune = nodeToClone.getCommune();
 
     }
-    public void print(){
-        System.out.println(name +" | "+ id.toString());
+
+    public String getCommune() {
+        return commune;
     }
 
-    public List getId() {
-        return id;
+    public void setCommune(String commune) {
+        this.commune = commune;
     }
 
-    public void addId(int id){
-        this.id.add(id);
-    }
-
-    public void setId(List<Integer> id) {
-        this.id = id;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public void setLon(double lon) {
-        this.lon = lon;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getLat() {
+    public String getLat() {
         return lat;
     }
 
-    public double getLon() {
-        return lon;
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
-    public String getName() {
-        return name;
+    public String getLng() {
+        return lng;
     }
 
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
 
+    public String getType() {
+
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public int[] getMetro() {
+        return metro;
+    }
+
+    public void setMetro(int[] metro) {
+        this.metro = metro;
+    }
 }
