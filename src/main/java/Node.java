@@ -23,6 +23,14 @@ public class Node {
         this.metro = metro;
         this.commune = commune;
     }
+
+    public Node(String lat, String lng, int num) {
+        this.lat = lat;
+        this.lng = lng;
+        this.num = num;
+        this.nom=num+"";
+    }
+
     public Node(Node nodeToClone) {
         this.lat = nodeToClone.getLat();
         this.lng = nodeToClone.getLng();
