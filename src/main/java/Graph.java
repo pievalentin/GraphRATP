@@ -103,7 +103,21 @@ public class Graph {
         }
     }
 
-
+    public double getDistance(Node node1, Node node2){
+        return Math.sqrt(
+                Math.abs(
+                        Double.parseDouble(node1.getLat())-(Double.parseDouble(node2.getLat())) )
+                        +Math.abs(
+                        Double.parseDouble(node1.getLng())-(Double.parseDouble(node2.getLng())) ));
+    }
+    public double getDistance(int id1, int id2){
+        double dist= Math.sqrt(
+                Math.abs(
+                    Math.pow(Double.parseDouble(nodes[id1].getLat())-(Double.parseDouble(nodes[id2].getLat())),2) )
+                +Math.abs(
+                    Math.pow(Double.parseDouble(nodes[id1].getLng())-(Double.parseDouble(nodes[id2].getLng())),2) ) );
+        return dist;
+    }
 
 
     public Node[] getNodes() {

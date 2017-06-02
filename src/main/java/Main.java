@@ -26,6 +26,7 @@ public class Main {
         System.out.println(size);
         //graph.printAdj("Invalides");
         graph.printAdj();
-        BFSShortestPaths bfsShortestPaths = new BFSShortestPaths(graph,"Bastille","Parmentier");
+        BFSShortestPaths bfsShortestPaths = new BFSShortestPaths(graph,"Bercy","HÃ´tel de Ville");
+        DijkstraSP dijkstraSP=new DijkstraSP(graph,"Pigalle","Pigalle");
     }
 }
