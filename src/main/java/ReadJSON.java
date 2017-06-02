@@ -19,19 +19,19 @@ public  class ReadJSON {
 
     public static Node[] fakeStation(){
         Node[] result = {
-                new Node("1","10",1),
-                new Node("2","30",2),
-                new Node("4","10",3),
-                new Node("6","30",4),
-                new Node ("10","15",5),
-                new Node("8","7",6)
+                new Node("1","10",0),
+                new Node("2","30",1),
+                new Node("4","10",2),
+                new Node("6","30",3),
+                new Node ("10","15",4),
+                new Node("8","7",5)
 
         };
         return result;
     }
-    public static Ligne fakeLigne(){
-        String[][] toSend = {{"1","2","3","5"},{"2","4","5","6","3","1"}};
-        Ligne result = new Ligne(toSend,"1");
+    public static Ligne[] fakeLigne(){
+        String[][] toSend = {{"0","1","2","4"},{"1","3","4","5","2","0"}};
+        Ligne[] result = {new Ligne(toSend,"1")};
         return result;
     }
 
