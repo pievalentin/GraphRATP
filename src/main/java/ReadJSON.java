@@ -12,6 +12,7 @@ public  class ReadJSON {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(new File("stations.json"), Node[].class);
     }
+
     public static Ligne[] readLines() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(new File("lignes.json"), Ligne[].class);
@@ -30,7 +31,9 @@ public  class ReadJSON {
         return result;
     }
     public static Ligne[] fakeLigne(){
+
         String[][] toSend = {{"0","1","2","4"},{"1","3","4","5","2","0"}};
+
         Ligne[] result = {new Ligne(toSend,"1")};
         return result;
     }

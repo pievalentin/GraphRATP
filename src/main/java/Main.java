@@ -18,15 +18,14 @@ public class Main {
             System.out.println();
         }
         System.out.println(list.size());*/
-        int size=0;
         /*for (int i = 0; i < graph.getAdj().length; i++) {
             size+=graph.getAdj()[i].size();
             System.out.println(graph.getAdj()[i].toString());
         }*/
-        System.out.println(size);
         //graph.printAdj("Invalides");
         graph.printAdj();
         BFSShortestPaths bfsShortestPaths = new BFSShortestPaths(graph,"Bercy","HÃ´tel de Ville");
-        DijkstraSP dijkstraSP=new DijkstraSP(graph,"Pigalle","Pigalle");
+        System.out.println(bfsShortestPaths.isConnected());
+        DijkstraSP dijkstraSP=new DijkstraSP(graph,"Bercy","HÃ´tel de Ville");
     }
 }

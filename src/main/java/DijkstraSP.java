@@ -27,25 +27,11 @@ public class DijkstraSP {
         this.t=graph.indexOfName(name2);
 
 
-        exploreStart(s);
-        //excentricity();
+        exploreStart(this.s);
+        printSP(this.t);
+        ////excentricity();
     }
 
-
-    /*private boolean verifyNonNegative(){
-        boolean nonNegative=true;
-        java.util.List<DirectedEdge>[] adj=graph.getAdj();
-        for (int i = 0; i < adj.length; i++) {
-            if(adj[i]!=null){
-                for (int j = 0; j < adj[i].size(); j++) {
-                    if(adj[i].get(j).weight()<0){
-                        nonNegative=false;
-                    }
-                }
-            }
-        }
-        return nonNegative;
-    }*/
 
     private void exploreStart(int s){
             System.out.println();
@@ -71,8 +57,10 @@ public class DijkstraSP {
 
             //}
             int interation=0;
-            while ( (stack.size()>1 || interation<2)&& interation<10){
+            while (!allMarked() ){//(stack.size()>1 || interation<2) && interation<20
                 interation++;
+               // System.out.println("iteration : "+interation);
+
                 ArrayList<Integer> stackbis=clone(stack);
                 //currentDistance++;
                 //for (int j = 0; j < stackbis.size(); j++) {//TODO 1: choose minimum distance not the J^st of the list
@@ -82,41 +70,43 @@ public class DijkstraSP {
                 stack.remove(stack.indexOf(stackbis.get(j)));//retirer l'élément actif de la liste
                 //gets the index of the active element in stack and removes it
                 java.util.List<Integer>neighborhood = graph.getAdj()[(stackbis.get(j))];//get the adjacents of element nb j of stack
+                int actifNode=stackbis.get(j);
                 //System.out.println(graph.getAdj()[0]);
                 //System.out.println(neighborhood.toString());
                 if (neighborhood !=null) {
-                    for (int i = 0; i < neighborhood.size()-1; i++) {
+                    for (int i = 0; i < neighborhood.size(); i++) {
                         //System.out.println("node : " + neighborhood.get(i) + " used path : " + path.toString()+ " neighborhood "+ neighborhood.toString());
                         //if(pathSet.add(neighborhood.get(i))){
-                        int node=neighborhood.get(i+1);
+                        int node=neighborhood.get(i);
                         if (notIn(stack, node)){
                             stack.add(node);
                         }
 
                         marked[node]=true;
                         int previousnode=previous[node];
-                        previous[node]=neighborhood.get(i);
+                        previous[node]=actifNode;
                         if(distance[node]>=0){
-                            if(distance[node]<distance[previous[node]]+graph.getDistance(neighborhood.get(i),neighborhood.get(i+1))){
+                            if(distance[node]<distance[previous[node]]+graph.getDistance(actifNode,neighborhood.get(i))){
                                 previous[node]=previousnode;
                             }else {
-                                distance[node]=distance[previous[node]]+graph.getDistance(neighborhood.get(i),neighborhood.get(i+1));
+                                distance[node]=distance[previous[node]]+graph.getDistance(actifNode,neighborhood.get(i));
                             }
                         }else{
-                            previous[node]=neighborhood.get(i);
-                            distance[node]=distance[previous[node]]+graph.getDistance(neighborhood.get(i),neighborhood.get(i+1));
+                            previous[node]=actifNode;
+                            distance[node]=distance[previous[node]]+graph.getDistance(actifNode,neighborhood.get(i));
                         }
 
-                        System.out.print("active node : ");
-                        System.out.println(node);
-                        disp(marked);
-                        //System.out.println();
-                        disp(distance);
-                        System.out.println("inifinite is set to -1");
-                        disp(previous);
-                        //System.out.println();
-                        System.out.println("stack : " + stack.toString());
-                        System.out.println();
+                           /*System.out.print("active node : ");
+                            System.out.println(node);
+                            disp(marked);
+
+                            disp(distance);
+                            System.out.println("inifinite is set to -1");
+                            disp(previous);
+                            System.out.println("stack : " + stack.toString());
+                            System.out.println();*/
+
+
                         //}
                     }
                 }
@@ -128,12 +118,20 @@ public class DijkstraSP {
             System.out.print("distances (inifinite is set to -1): ");disp(distance);
             System.out.print("previouses : ");disp(previous);
 
-        printPath(stack);
+
 
     }
 
+    private boolean allMarked() {
+        boolean allMarked=true;
+        for (int i = 1; i <marked.length; i++) {
+            allMarked=allMarked&&marked[i];
+        }
+        return allMarked;
+    }
 
-private void printPath( ArrayList<Integer> stack){
+
+    private void printPath( ArrayList<Integer> stack){
     for (int i = 0; i < stack.size(); i++) {
         System.out.println(graph.getNodes()[stack.get(i)].getNom());
     }
@@ -198,12 +196,17 @@ private void printPath( ArrayList<Integer> stack){
             printSPbis(previous[v],path);
         }
         System.out.println(path.toString());
+        for (int i = 0; i < path.size(); i++) {
+            System.out.println(graph.getNodes()[path.get(i)].getNom());
+        }
+
     }
 
     public void printSPbis(int v, ArrayList<Integer>path) {
         if (previous[v]>0){
             path.add(0,previous[v]);
             printSPbis(previous[v],path);
+
         }
     }
 

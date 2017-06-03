@@ -25,15 +25,13 @@ public class Graph {
         for (int i = 0; i < adj.length; i++) {
             adj[i]=new ArrayList<Integer>();
         }
-
-
         for (Ligne line: lines ) {
 
             for (int i = 0; i < line.getArrets().length; i++) {
                 for (int j = 0; j < line.getArrets()[i].length-1; j++) {
-                    if(Integer.parseInt(line.getArrets()[i][j])!=0 && Integer.parseInt(line.getArrets()[i][j+1])!=0){//todo: pq y'a des 0?
+                   // if(Integer.parseInt(line.getArrets()[i][j])!=0 && Integer.parseInt(line.getArrets()[i][j+1])!=0){
                         addTransfer(Integer.parseInt(line.getArrets()[i][j]),Integer.parseInt(line.getArrets()[i][j+1]));
-                    }
+                   // }
                 }
             }
 
@@ -56,7 +54,7 @@ public class Graph {
         }
 
         try{
-            if(node1!=node2 && node1>0 && node2>0){
+            if(node1!=node2 && node1>=0 && node2>=0){
 
                 if(!adj[node1].contains(node2)){
                     adj[node1].add(node2);
@@ -94,7 +92,7 @@ public class Graph {
 
     public void printAdj(){
         for (int i = 0; i < adj.length; i++) {
-            System.out.print(nodes[i].getNom()+" : ");
+            System.out.print(i+" : "+nodes[i].getNom()+" : ");
             for (int j = 0; j < adj[i].size(); j++) {
 
                 System.out.print(nodes[adj[i].get(j)].getNom()+" | ");
