@@ -91,46 +91,50 @@ public class Graph {
     }
 
     public void printAdj(){
+        int maxSize=0;
         for (int i = 0; i < adj.length; i++) {
-            System.out.print(i+" : "+nodes[i].getNom()+" : ");
-            for (int j = 0; j < adj[i].size(); j++) {
+        System.out.print(i+" : "+nodes[i].getNom()+" ("+adj[i].size()+") : ");
+        maxSize=Math.max(maxSize,adj[i].size());
+        for (int j = 0; j < adj[i].size(); j++) {
 
-                System.out.print(nodes[adj[i].get(j)].getNom()+" | ");
-            }
-            System.out.println();
+            System.out.print(nodes[adj[i].get(j)].getNom()+" | ");
         }
-    }
+            System.out.println();
 
-    public double getDistance(Node node1, Node node2){
+    }System.out.println("max size : "+ maxSize);
+}
+
+public double getDistance(Node node1, Node node2){
         return Math.sqrt(
-                Math.abs(
-                        Double.parseDouble(node1.getLat())-(Double.parseDouble(node2.getLat())) )
-                        +Math.abs(
-                        Double.parseDouble(node1.getLng())-(Double.parseDouble(node2.getLng())) ));
-    }
-    public double getDistance(int id1, int id2){
+        Math.abs(
+        Double.parseDouble(node1.getLat())-(Double.parseDouble(node2.getLat())) )
+        +Math.abs(
+        Double.parseDouble(node1.getLng())-(Double.parseDouble(node2.getLng())) ));
+        }
+public double getDistance(int id1, int id2){
         double dist= Math.sqrt(
-                Math.abs(
-                    Math.pow(Double.parseDouble(nodes[id1].getLat())-(Double.parseDouble(nodes[id2].getLat())),2) )
-                +Math.abs(
-                    Math.pow(Double.parseDouble(nodes[id1].getLng())-(Double.parseDouble(nodes[id2].getLng())),2) ) );
+        Math.abs(
+        Math.pow(Double.parseDouble(nodes[id1].getLat())-(Double.parseDouble(nodes[id2].getLat())),2) )
+        +Math.abs(
+        Math.pow(Double.parseDouble(nodes[id1].getLng())-(Double.parseDouble(nodes[id2].getLng())),2) ) );
         return dist;
-    }
+        }
 
 
-    public Node[] getNodes() {
+public Node[] getNodes() {
         return nodes;
-    }
+        }
 
-    public List<Integer>[] getAdj() {
+public List<Integer>[] getAdj() {
         return adj;
-    }
+        }
 
-    public int getGraphOrder() {
+public int getGraphOrder() {
         return nodes.length;
-    }
+        }
 
-    public List<Integer> neighbors(Integer integer) {//todo
+public List<Integer> neighbors(Integer integer) {//todo
         return new ArrayList<>();
-    }
+        }
+
 }

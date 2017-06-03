@@ -24,8 +24,8 @@ public class Main {
         }*/
         //graph.printAdj("Invalides");
         graph.printAdj();
-        BFSShortestPaths bfsShortestPaths = new BFSShortestPaths(graph,"Bercy","HÃ´tel de Ville");
-        System.out.println(bfsShortestPaths.isConnected());
-        DijkstraSP dijkstraSP=new DijkstraSP(graph,"Bercy","HÃ´tel de Ville");
+        ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","HÃ´tel de Ville");
+
+        ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"Bercy","HÃ´tel de Ville");
     }
 }

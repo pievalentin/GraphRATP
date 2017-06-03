@@ -9,38 +9,28 @@ import javax.swing.text.InternationalFormatter;
 /**
  * Created by sami- on 02/06/2017.
  */
-public class DijkstraSP {
-    private Graph graph;
-    private Set<Integer> pathSet;
-    private int s;
-    private int t;
+public class DijkstraSP extends ShortestPath{
 
-    private boolean[] marked;
-    private int[] previous;
-    private double[] distance;
-    private double[] excentricity;
-
+    private Double[] distance;
+    private Double[] excentricity;
 
     public DijkstraSP(Graph graph, String name,String name2) {//todo remplacer variable s par this.s
-        this.graph=graph;
-        this.s=graph.indexOfName(name);
-        this.t=graph.indexOfName(name2);
+        super(graph,name,name2);
 
-
-        exploreStart(this.s);
-        printSP(this.t);
-        ////excentricity();
+        //exploreStart(this.s);
+        //printSP(this.t);
+        excentricity();
     }
-
 
     private void exploreStart(int s){
             System.out.println();
-            System.out.println("The algorithm displays each step of the Dijkstra algorithm :");
+
             System.out.println("starting point : "+s);
             System.out.println();
-            this.marked=new boolean[graph.getGraphOrder()];//first node is 1 instead of 0
-            this.previous=new int[graph.getGraphOrder()];
-            this.distance=new double[graph.getGraphOrder()];
+        System.out.println(graph.getGraphOrder());
+            this.marked=new Boolean[graph.getGraphOrder()];//first node is 1 instead of 0
+            this.previous=new Integer[graph.getGraphOrder()];
+            this.distance=new Double[graph.getGraphOrder()];
             //this.pathSet = new LinkedHashSet<Integer>();
 
             ArrayList<Integer> stack=new ArrayList<>();//TODO make it a linkedhashset
@@ -50,9 +40,11 @@ public class DijkstraSP {
             stack.add(s);
             marked[s]=true;
             for (int i = 0; i < distance.length; i++) {
-                distance[i]=-1;
+                distance[i]=-1.0;
+                previous[i]=-1;
+                marked[i]=false;
             }
-            distance[s]=0;
+            distance[s]=0.0;
             previous[s]=-1;
 
             //}
@@ -96,7 +88,7 @@ public class DijkstraSP {
                             distance[node]=distance[previous[node]]+graph.getDistance(actifNode,neighborhood.get(i));
                         }
 
-                           /*System.out.print("active node : ");
+                          /* System.out.print("active node : ");
                             System.out.println(node);
                             disp(marked);
 
@@ -113,10 +105,9 @@ public class DijkstraSP {
                 //}
             }
 
-            //System.out.println("bfs algorithm path : " + pathSet.toString());
-            System.out.print("marked : ");disp(marked);
-            System.out.print("distances (inifinite is set to -1): ");disp(distance);
-            System.out.print("previouses : ");disp(previous);
+        System.out.print("marked : ");disp(marked);
+        System.out.print("distances : ");disp(distance);
+        System.out.print("previouses : ");disp(previous);
 
 
 
@@ -130,12 +121,6 @@ public class DijkstraSP {
         return allMarked;
     }
 
-
-    private void printPath( ArrayList<Integer> stack){
-    for (int i = 0; i < stack.size(); i++) {
-        System.out.println(graph.getNodes()[stack.get(i)].getNom());
-    }
-}
 
     private boolean notIn(ArrayList<Integer> stack, int node) {
         boolean notIn=true;
@@ -163,7 +148,7 @@ public class DijkstraSP {
 
 
     private void excentricity(){
-        excentricity=new double[graph.getGraphOrder()];
+        excentricity=new Double[graph.getGraphOrder()];
         for (int i = 0; i < excentricity.length; i++) {
             exploreStart(i);
             excentricity[i]=maxValue(distance);
@@ -172,6 +157,8 @@ public class DijkstraSP {
         System.out.print("excentricity of each vertex : ");disp(excentricity);
         System.out.println("diameter : "+ maxValue(excentricity));
         System.out.println("radius : "+minValue(excentricity));
+        System.out.println("diameter : "+ maxValue(excentricity)*40000/360 +" km");
+        System.out.println("radius : "+minValue(excentricity)*40000/360 +" km");
 
     }
 
@@ -216,7 +203,7 @@ public class DijkstraSP {
         }
     }
 
-    private static double maxValue(double[] distance2) {
+    private static double maxValue(Double[] distance2) {
         double max = distance2[0];
         for (int i = 0; i < distance2.length; i++) {
             if (distance2[i] > max) {
@@ -226,7 +213,7 @@ public class DijkstraSP {
         return max;
     }
 
-    private static double minValue(double[] array) {
+    private static double minValue(Double[] array) {
         double min = array[0];
         for (int i = 0; i < array.length; i++) {
             if (array[i] < min) {
@@ -235,42 +222,5 @@ public class DijkstraSP {
         }
         return min;
     }
-
-    private void disp(boolean[] marked2) {
-        for (int i = 0; i < marked2.length; i++) {
-            System.out.print(i+":"+marked2[i]+" | ");
-        }
-        System.out.println();
-    }
-
-    private void disp(int[] distance2) {
-        for (int i = 0; i < distance2.length; i++) {
-            System.out.print(i+":"+distance2[i]+" | ");
-        }
-        System.out.println();
-    }
-    private void disp(double[] distance2) {
-        for (int i = 0; i < distance2.length; i++) {
-            System.out.print(i+":"+distance2[i]+" | ");
-        }
-        System.out.println();
-    }
-    private ArrayList<Integer> clone(ArrayList<Integer> listToClone) {
-        ArrayList<Integer> clone=new ArrayList<>();
-        for (int i = 0; i < listToClone.size(); i++) {
-            clone.add(listToClone.get(i));
-        }
-        return clone;
-    }
-
-
-    public boolean isConnected() {
-        return (pathSet.size()==graph.getGraphOrder());
-    }
-
-    public int cc() {
-        return pathSet.size();
-    }
-
 
 }

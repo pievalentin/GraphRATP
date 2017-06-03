@@ -5,35 +5,29 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+
 /**
  * Created by sami- on 01/06/2017.
  */
-public class BFSShortestPaths {
-    private Graph graph;
-    private Set<Integer> pathSet;
-    private int s;
-    private int t;
+public class BFSShortestPaths extends ShortestPath{
 
-    private boolean[] marked;
-    private int[] previous;
-    private int[] distance;
-    private int[] excentricity;
 
+    private Integer[] distance;
+    private Integer[] excentricity;
 
     public BFSShortestPaths(Graph graph, String name,String name2) {//todo remplacer variable s par this.s
-        this.graph=graph;
-        this.s=graph.indexOfName(name);
-        this.t=graph.indexOfName(name2);
+        super(graph,name,name2);
 
-        exploreStart(s);
-        //excentricity();
+        //exploreStart(s);
+        excentricity();
     }
+
 
     private void exploreStart(int s){//beginning of recurcivity
         System.out.println("starting point : "+s);
-        this.marked=new boolean[graph.getGraphOrder()];
-        this.previous=new int[graph.getGraphOrder()];
-        this.distance=new int[graph.getGraphOrder()];
+        this.marked=new Boolean[graph.getGraphOrder()];
+        this.previous=new Integer[graph.getGraphOrder()];
+        this.distance=new Integer[graph.getGraphOrder()];
         this.pathSet = new LinkedHashSet<Integer>();
 
         ArrayList<Integer> stack=new ArrayList<>();
@@ -71,30 +65,17 @@ public class BFSShortestPaths {
             }
         }
 
-        System.out.println("bfs algorithm path : "+pathSet.toString() );
-        System.out.println("bfs algorithm path : " ); //print(pathSet);
+        System.out.println(this.getClass().toString()+" algorithm path : "+pathSet.toString() );
         System.out.print("marked : ");disp(marked);
         System.out.print("distances : ");disp(distance);
         System.out.print("previouses : ");disp(previous);
-        System.out.print("shortest path to 0 : ");printSP(t);
+
     }
 
-    private void print(Set<Integer> pathSet) {
-        Iterator<Integer> it = pathSet.iterator();
-        while(it.hasNext()){
-            System.out.println(graph.getNodes()[it.next()].getNom() + " | ");
-        }
-    }
 
-    private void print(ArrayList<Integer> pathSet) {
-        Iterator<Integer> it = pathSet.iterator();
-        while(it.hasNext()){
-            System.out.println(graph.getNodes()[it.next()].getNom() + " | ");
-        }
-    }
 
     private void excentricity(){
-        excentricity=new int[graph.getGraphOrder()];
+        excentricity=new Integer[graph.getGraphOrder()];
         for (int i = 0; i < excentricity.length; i++) {
             exploreStart(i);
             excentricity[i]=maxValue(distance);
@@ -132,7 +113,7 @@ public class BFSShortestPaths {
 
     }
 
-    private static int maxValue(int[] array) {
+    private static int maxValue(Integer[] array) {
         int max = array[0];
         for (int i = 0; i < array.length; i++) {
             if (array[i] > max) {
@@ -142,7 +123,7 @@ public class BFSShortestPaths {
         return max;
     }
 
-    private static int minValue(int[] array) {
+    private static int minValue(Integer[] array) {
         int min = array[0];
         for (int i = 0; i < array.length; i++) {
             if (array[i] < min) {
@@ -152,35 +133,8 @@ public class BFSShortestPaths {
         return min;
     }
 
-    private void disp(boolean[] marked2) {
-        for (int i = 0; i < marked2.length; i++) {
-            System.out.print(i+":"+marked2[i]+" | ");
-        }
-        System.out.println();
-    }
-
-    private void disp(int[] distance2) {
-        for (int i = 0; i < distance2.length; i++) {
-            System.out.print(i+":"+distance2[i]+" | ");
-        }
-        System.out.println();
-    }
-
-    private ArrayList<Integer> clone(ArrayList<Integer> listToClone) {
-        ArrayList<Integer> clone=new ArrayList<>();
-        for (int i = 0; i < listToClone.size(); i++) {
-            clone.add(listToClone.get(i));
-        }
-        return clone;
-    }
 
 
-    public boolean isConnected() {
-        return (pathSet.size()==graph.getGraphOrder());
-    }
 
-    public int cc() {
-        return pathSet.size();
-    }
 }
 
