@@ -23,7 +23,7 @@ public class Graph {
         adj=new ArrayList[getGraphOrder()];
         //create adj
         for (int i = 0; i < adj.length; i++) {
-            adj[i]=new ArrayList<Integer>();
+            adj[i]=new ArrayList<>();
         }
         for (Ligne line: lines ) {
 
@@ -101,12 +101,12 @@ public class Graph {
 }
 
 public double getDistance(int id1, int id2){
-        double dist= (Math.sqrt(
+    return  (Math.sqrt(
         Math.abs(
         Math.pow(Double.parseDouble(nodes[id1].getLat())-(Double.parseDouble(nodes[id2].getLat())),2) )
         +Math.abs(
         Math.pow(Double.parseDouble(nodes[id1].getLng())-(Double.parseDouble(nodes[id2].getLng())),2) ) ))*40000/360;
-        return dist;
+
         }
 
 

@@ -62,7 +62,7 @@ public abstract class ShortestPath {
     }
 
     protected void printSP(int v) {
-        ArrayList<Integer> path=new ArrayList<Integer>();
+        ArrayList<Integer> path=new ArrayList<>();
         path.add(v);
         if (previous[v]>0){
             path.add(0,previous[v]);

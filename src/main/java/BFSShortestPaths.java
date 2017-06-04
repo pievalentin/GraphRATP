@@ -1,15 +1,14 @@
-import java.awt.DisplayMode;
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.Set;
 
 
 /**
  * Created by sami- on 01/06/2017.
  */
 public class BFSShortestPaths extends ShortestPath{
+
+
+
 
     public BFSShortestPaths(Graph graph, String name,String name2) {
         super(graph,name,name2);
@@ -37,6 +36,7 @@ public class BFSShortestPaths extends ShortestPath{
             marked[s]=true;
             distance[s]=currentDistance;
             previous[s]=-1;
+
         }
         while (!stack.isEmpty()){
             ArrayList<Integer> stackbis=clone(stack);
