@@ -83,7 +83,6 @@ public class DijkstraSP extends ShortestPath{
                             previous[node]=actifNode;
                             distance[node]=distance[previous[node]]+graph.getDistance(actifNode,neighborhood.get(i));
                         }
-
                           /* System.out.print("active node : ");
                             System.out.println(node);
                             disp(marked);
@@ -93,22 +92,14 @@ public class DijkstraSP extends ShortestPath{
                             disp(previous);
                             System.out.println("stack : " + stack.toString());
                             System.out.println();*/
-
-
-                        //}
                     }
                 }
-                //}
             }
         if(dispResult){
             System.out.print("marked : ");disp(marked);
             System.out.print("distances : ");disp(distance);
             System.out.print("previouses : ");disp(previous);
         }
-
-
-
-
     }
 
     private boolean allMarked() {
@@ -129,14 +120,4 @@ public class DijkstraSP extends ShortestPath{
         }
         return notIn;
     }
-
-
-
-
-
-
-
-
-
-
 }

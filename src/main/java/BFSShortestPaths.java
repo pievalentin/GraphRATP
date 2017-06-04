@@ -11,9 +11,6 @@ import java.util.Set;
  */
 public class BFSShortestPaths extends ShortestPath{
 
-
-
-
     public BFSShortestPaths(Graph graph, String name,String name2) {
         super(graph,name,name2);
 
@@ -40,7 +37,6 @@ public class BFSShortestPaths extends ShortestPath{
             marked[s]=true;
             distance[s]=currentDistance;
             previous[s]=-1;
-
         }
         while (!stack.isEmpty()){
             ArrayList<Integer> stackbis=clone(stack);
@@ -72,8 +68,6 @@ public class BFSShortestPaths extends ShortestPath{
             System.out.print("distances : ");disp(distance);
             System.out.print("previouses : ");disp(previous);
         }
-
-
     }
 }
 
