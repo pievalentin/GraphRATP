@@ -1,9 +1,7 @@
 import java.awt.DisplayMode;
 import java.awt.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 import javax.swing.text.InternationalFormatter;
 
 /**
@@ -12,26 +10,29 @@ import javax.swing.text.InternationalFormatter;
 public class DijkstraSP extends ShortestPath{
 
 
-    public DijkstraSP(Graph graph, String name,String name2) {//todo remplacer variable s par this.s
+    public DijkstraSP(Graph graph, String name,String name2) {
         super(graph,name,name2);
 
-        //exploreStart(this.s);
-        //printSP(this.t);
+       // exploreStart(this.s,true);
+       // printSP(this.t);
         excentricity();
     }
 
-    private void exploreStart(int s){
+    void exploreStart(int s,boolean dispResult){
+        if (dispResult){
             System.out.println();
 
             System.out.println("starting point : "+s);
             System.out.println();
+        }
+
 
             this.marked=new Boolean[graph.getGraphOrder()];//first node is 1 instead of 0
             this.previous=new Integer[graph.getGraphOrder()];
             this.distance=new Double[graph.getGraphOrder()];
             //this.pathSet = new LinkedHashSet<Integer>();
 
-            ArrayList<Integer> stack=new ArrayList<>();//TODO make it a linkedhashset
+            ArrayList<Integer> stack=new ArrayList<>();
             //int currentDistance=0;
             //int currentPrevious=s;
             //if(pathSet.add(s)){
@@ -51,15 +52,13 @@ public class DijkstraSP extends ShortestPath{
                 interation++;
                //System.out.println("iteration : "+interation);
 
-                ArrayList<Integer> stackbis=clone(stack);
-                //for (int j = 0; j < stackbis.size(); j++) {//TODO 1: choose minimum distance not the J^st of the list
-                int j = minWeightof(stackbis);//TODO à vérifier
                 //System.out.println("stack"+stack.toString());
                 //currentPrevious=stackbis.get(j);
-                stack.remove(stack.indexOf(stackbis.get(j)));//retirer l'élément actif de la liste
+                //retirer l'élément actif de la liste
                 //gets the index of the active element in stack and removes it
-                java.util.List<Integer>neighborhood = graph.getAdj()[(stackbis.get(j))];//get the adjacents of element nb j of stack
-                int actifNode=stackbis.get(j);
+                java.util.List<Integer>neighborhood = graph.getAdj()[(stack.get(0))];//get the adjacents of element nb j of stack
+                int actifNode=stack.get(0);
+                stack.remove(0);
                 //System.out.println(graph.getAdj()[0]);
                 //System.out.println(neighborhood.toString());
                 if (neighborhood !=null) {
@@ -101,10 +100,12 @@ public class DijkstraSP extends ShortestPath{
                 }
                 //}
             }
+        if(dispResult){
+            System.out.print("marked : ");disp(marked);
+            System.out.print("distances : ");disp(distance);
+            System.out.print("previouses : ");disp(previous);
+        }
 
-        System.out.print("marked : ");disp(marked);
-        System.out.print("distances : ");disp(distance);
-        System.out.print("previouses : ");disp(previous);
 
 
 
@@ -130,41 +131,7 @@ public class DijkstraSP extends ShortestPath{
     }
 
 
-    private int minWeightof(ArrayList<Integer> stack) {//todo 2 : à changer
-        int min=0;
-        for (int i = 0; i < stack.size(); i++) {
-            if (distance[stack.get(i)]>=0 && distance[stack.get(i)]<distance[stack.get(min)]) {
-                min=i;
-            }
-        }
-        return 0;
-    }
 
-
-
-
-
-    private void excentricity(){
-        excentricity=new Double[graph.getGraphOrder()];
-        for (int i = 0; i < excentricity.length; i++) {
-            exploreStart(i);
-            excentricity[i]=maxValue(distance);
-            System.out.println();
-        }
-        System.out.print("excentricity of each vertex : ");disp(excentricity);
-        System.out.println("diameter : "+ maxValue(excentricity));
-        System.out.println("radius : "+minValue(excentricity));
-
-    }
-
-
-
-    public void distancesTo() {
-        for (int i = 0; i < distance.length; i++) {
-            System.out.print(i+ " : " + distTo(i) + " | ");
-        }
-        System.out.println();
-    }
 
 
 

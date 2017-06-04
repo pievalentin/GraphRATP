@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 
 /**
  * Created by sami- on 03/06/2017.
  */
-public abstract class ShortestPath <T>{
+public abstract class ShortestPath {
     protected Set<Integer> pathSet;
     protected Graph graph;
     protected int s;
@@ -25,6 +26,21 @@ public abstract class ShortestPath <T>{
         this.t=graph.indexOfName(name2);
 
     }
+    protected void excentricity(){
+        System.out.println();
+        excentricity=new Double[graph.getGraphOrder()];
+        for (int i = 0; i < excentricity.length; i++) {
+            exploreStart(i,false);
+            excentricity[i]=maxValue(distance);
+        }
+        System.out.print("excentricity of each vertex : ");disp(excentricity);
+        System.out.println("diameter : "+ maxValue(excentricity));
+        System.out.println("radius : "+minValue(excentricity));
+        exploreStart(Arrays.asList(excentricity).indexOf(maxValue(excentricity)),false);
+        printSP(Arrays.asList(distance).indexOf(maxValue(distance)));
+    }
+
+    abstract void exploreStart(int s,boolean dispResult);
 
     protected void printResult(){
 
@@ -38,12 +54,13 @@ public abstract class ShortestPath <T>{
         return pathSet.size();
     }
 
-    protected void disp(T[] marked2) {
+    protected <T>void disp(T[] marked2) {
         for (int i = 0; i < marked2.length; i++) {
             System.out.print(i+":"+marked2[i]+" | ");
         }
         System.out.println();
     }
+
     protected void printSP(int v) {
         ArrayList<Integer> path=new ArrayList<Integer>();
         path.add(v);
@@ -52,19 +69,23 @@ public abstract class ShortestPath <T>{
             printSPbis(previous[v],path);
         }
         System.out.println(path.toString());
-        print(path);
+
+        System.out.println(graph.getNodes()[path.get(0)].getNom());
+        for (int i = 1; i <path.size(); i++) {
+            System.out.print(graph.getNodes()[path.get(i)].getNom());
+            if(this.getClass()==DijkstraSP.class){
+                System.out.println( "\t \t  \t \t distance from previous : "+graph.getDistance(path.get(i-1),path.get(i)));
+            }else {
+                System.out.println();
+            }
+        }
+
     }
 
     protected void printSPbis(int v, ArrayList<Integer>path) {
         if (previous[v]>0){
             path.add(0,previous[v]);
             printSPbis(previous[v],path);
-        }
-    }
-
-    public void printAllSP() {
-        for (int i = 1; i <= graph.getGraphOrder(); i++) {
-            System.out.print("path from 1 to "+ i +" : ");printSP(i);
         }
     }
 

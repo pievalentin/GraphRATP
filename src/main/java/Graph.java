@@ -32,8 +32,6 @@ public class Graph {
                     addTransfer(Integer.parseInt(line.getArrets()[i][j]),Integer.parseInt(line.getArrets()[i][j+1]));
                 }
             }
-
-
         }
     }
     private void addTransfer(int idNode1,int idNode2){
@@ -102,13 +100,6 @@ public class Graph {
     }System.out.println("max size : "+ maxSize);
 }
 
-public double getDistance(Node node1, Node node2){
-        return Math.sqrt(
-        Math.abs(
-        Double.parseDouble(node1.getLat())-(Double.parseDouble(node2.getLat())) )
-        +Math.abs(
-        Double.parseDouble(node1.getLng())-(Double.parseDouble(node2.getLng())) ));
-        }
 public double getDistance(int id1, int id2){
         double dist= (Math.sqrt(
         Math.abs(

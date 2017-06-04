@@ -22,8 +22,11 @@ public class BFSShortestPaths extends ShortestPath{
     }
 
 
-    private void exploreStart(int s){//beginning of recurcivity
-        System.out.println("starting point : "+s);
+    void exploreStart(int s,boolean dispResult){//beginning of recurcivity
+
+        if(dispResult){
+            System.out.println("starting point : "+s);
+        }
         this.marked=new Boolean[graph.getGraphOrder()];
         this.previous=new Integer[graph.getGraphOrder()];
         this.distance=new Double[graph.getGraphOrder()];
@@ -63,31 +66,14 @@ public class BFSShortestPaths extends ShortestPath{
                 }
             }
         }
-
-        System.out.println(this.getClass().toString()+" algorithm path : "+pathSet.toString() );
-        System.out.print("marked : ");disp(marked);
-        System.out.print("distances : ");disp(distance);
-        System.out.print("previouses : ");disp(previous);
-
-    }
-
-
-
-    private void excentricity(){
-        excentricity=new Double[graph.getGraphOrder()];
-        for (int i = 0; i < excentricity.length; i++) {
-            exploreStart(i);
-            excentricity[i]=maxValue(distance);
-            System.out.println();
+        if(dispResult){
+            System.out.println(this.getClass().toString()+" algorithm path : "+pathSet.toString() );
+            System.out.print("marked : ");disp(marked);
+            System.out.print("distances : ");disp(distance);
+            System.out.print("previouses : ");disp(previous);
         }
-        System.out.print("excentricity of each vertex : ");disp(excentricity);
-        System.out.println("diameter : "+ maxValue(excentricity));
-        System.out.println("radius : "+minValue(excentricity));
+
 
     }
-
-
-
-
 }
 

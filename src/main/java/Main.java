@@ -11,7 +11,7 @@ public class Main {
         Graph graph=new Graph();
         System.out.println(graph.getNodes().length);
         graph.printAdj();
-       // ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","HÃ´tel de Ville");
+        ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","HÃ´tel de Ville");
         ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"1","5");
     }
 }
