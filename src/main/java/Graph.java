@@ -29,9 +29,7 @@ public class Graph {
 
             for (int i = 0; i < line.getArrets().length; i++) {
                 for (int j = 0; j < line.getArrets()[i].length-1; j++) {
-                   // if(Integer.parseInt(line.getArrets()[i][j])!=0 && Integer.parseInt(line.getArrets()[i][j+1])!=0){
-                        addTransfer(Integer.parseInt(line.getArrets()[i][j]),Integer.parseInt(line.getArrets()[i][j+1]));
-                   // }
+                    addTransfer(Integer.parseInt(line.getArrets()[i][j]),Integer.parseInt(line.getArrets()[i][j+1]));
                 }
             }
 
@@ -112,11 +110,11 @@ public double getDistance(Node node1, Node node2){
         Double.parseDouble(node1.getLng())-(Double.parseDouble(node2.getLng())) ));
         }
 public double getDistance(int id1, int id2){
-        double dist= Math.sqrt(
+        double dist= (Math.sqrt(
         Math.abs(
         Math.pow(Double.parseDouble(nodes[id1].getLat())-(Double.parseDouble(nodes[id2].getLat())),2) )
         +Math.abs(
-        Math.pow(Double.parseDouble(nodes[id1].getLng())-(Double.parseDouble(nodes[id2].getLng())),2) ) );
+        Math.pow(Double.parseDouble(nodes[id1].getLng())-(Double.parseDouble(nodes[id2].getLng())),2) ) ))*40000/360;
         return dist;
         }
 
@@ -131,10 +129,6 @@ public List<Integer>[] getAdj() {
 
 public int getGraphOrder() {
         return nodes.length;
-        }
-
-public List<Integer> neighbors(Integer integer) {//todo
-        return new ArrayList<>();
         }
 
 }

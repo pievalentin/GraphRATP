@@ -12,10 +12,9 @@ import java.util.Set;
 public class BFSShortestPaths extends ShortestPath{
 
 
-    private Integer[] distance;
-    private Integer[] excentricity;
 
-    public BFSShortestPaths(Graph graph, String name,String name2) {//todo remplacer variable s par this.s
+
+    public BFSShortestPaths(Graph graph, String name,String name2) {
         super(graph,name,name2);
 
         //exploreStart(s);
@@ -27,11 +26,11 @@ public class BFSShortestPaths extends ShortestPath{
         System.out.println("starting point : "+s);
         this.marked=new Boolean[graph.getGraphOrder()];
         this.previous=new Integer[graph.getGraphOrder()];
-        this.distance=new Integer[graph.getGraphOrder()];
+        this.distance=new Double[graph.getGraphOrder()];
         this.pathSet = new LinkedHashSet<Integer>();
 
         ArrayList<Integer> stack=new ArrayList<>();
-        int currentDistance=0;
+        Double currentDistance=0.0;
         int currentPrevious=s;
         if(pathSet.add(s)){
             stack.add(s);
@@ -75,7 +74,7 @@ public class BFSShortestPaths extends ShortestPath{
 
 
     private void excentricity(){
-        excentricity=new Integer[graph.getGraphOrder()];
+        excentricity=new Double[graph.getGraphOrder()];
         for (int i = 0; i < excentricity.length; i++) {
             exploreStart(i);
             excentricity[i]=maxValue(distance);
@@ -85,52 +84,6 @@ public class BFSShortestPaths extends ShortestPath{
         System.out.println("diameter : "+ maxValue(excentricity));
         System.out.println("radius : "+minValue(excentricity));
 
-    }
-
-    public boolean haspathTo(int v){
-        return marked[v];
-    }
-    public int  distTo(int v) {
-        return distance[v];
-    }
-
-    public void printSP(int v) {
-        ArrayList<Integer> path=new ArrayList<Integer>();
-        path.add(v);
-        if (previous[v]>0){//if (previous[v]>0){
-            path.add(0,previous[v]);
-            printSPbis(previous[v],path);
-        }
-        System.out.println(path.toString());
-        print(path);
-    }
-
-    public void printSPbis(int v, ArrayList<Integer>path) {
-        if (previous[v]>0){//if (previous[v]>0){
-            path.add(0,previous[v]);
-            printSPbis(previous[v],path);
-        }
-
-    }
-
-    private static int maxValue(Integer[] array) {
-        int max = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-            }
-        }
-        return max;
-    }
-
-    private static int minValue(Integer[] array) {
-        int min = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
-                min = array[i];
-            }
-        }
-        return min;
     }
 
 
