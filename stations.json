@@ -3694,7 +3694,7 @@
         ]
       },
       "lng": "2.39347313514395",
-      "nom": "Place des FÃªtes",
+      "nom": "Place des Fêtes",
       "num": "1792",
       "type": "metro",
       "isHub": true,
@@ -3722,7 +3722,7 @@
         ]
       },
       "lng": "2.36161295005801",
-      "nom": "Le Kremlin-BicÃªtre",
+      "nom": "Le Kremlin-Bicêtre",
       "num": "1793",
       "type": "metro",
       "isHub": false,
@@ -4753,7 +4753,7 @@
         ]
       },
       "lng": "2.3712726500969",
-      "nom": "Goncourt (HÃ´pital Saint-Louis)",
+      "nom": "Goncourt (Hôpital Saint-Louis)",
       "num": "1849",
       "type": "metro",
       "isHub": false,
@@ -6772,7 +6772,7 @@
         ]
       },
       "lng": "2.29576268465124",
-      "nom": "Charles de Gaulle-Ã‰toile",
+      "nom": "Charles de Gaulle-Étoile",
       "num": "1953",
       "type": "metro",
       "isHub": true,
