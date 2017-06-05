@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by sami- on 03/06/2017.
@@ -15,18 +12,34 @@ public abstract class ShortestPath {
     protected Integer[] previous;
     protected Double[] distance;
     protected Double[] excentricity;
+    protected List<Integer>[]nodesBetweenness;
+    protected boolean basic;
 
     public ShortestPath(){
     }
 
-    public ShortestPath(Graph graph, String name,String name2){
+    public ShortestPath(Graph graph, String name,String name2,boolean basic){
+        this.basic=basic;
         this.graph=graph;
         this.graph=graph;
         this.s=graph.indexOfName(name);
         this.t=graph.indexOfName(name2);
+        int iteration=0;
+        if(!basic){
+            do{
+                System.out.println();
+                System.out.print("iteration : "+(iteration++));
+                createNodesBetweenness();
+                excentricity(basic);
+                System.out.println("size of sub Graph : "+sizeSubGraph());
+                removeNodeBetweenness();
+                //dispNodesBetweenness();
+
+            }while (sizeSubGraph()>1);
+        }
 
     }
-    protected void excentricity(){
+    protected void excentricity(boolean basic){
         System.out.println();
         excentricity=new Double[graph.getGraphOrder()];
         for (int i = 0; i < excentricity.length; i++) {
@@ -36,8 +49,11 @@ public abstract class ShortestPath {
         System.out.print("excentricity of each vertex : ");disp(excentricity);
         System.out.println("diameter : "+ maxValue(excentricity));
         System.out.println("radius : "+minValue(excentricity));
-        exploreStart(Arrays.asList(excentricity).indexOf(maxValue(excentricity)),false);
-        printSP(Arrays.asList(distance).indexOf(maxValue(distance)));
+        if(basic){
+            exploreStart(Arrays.asList(excentricity).indexOf(maxValue(excentricity)),true);
+            printSP(Arrays.asList(distance).indexOf(maxValue(distance)),true);
+        }
+
     }
 
     abstract void exploreStart(int s,boolean dispResult);
@@ -61,23 +77,26 @@ public abstract class ShortestPath {
         System.out.println();
     }
 
-    protected void printSP(int v) {
+    protected void printSP(int v,boolean display) {
         ArrayList<Integer> path=new ArrayList<>();
         path.add(v);
-        if (previous[v]>0){
+        if (marked[v] && previous[v]>0){//todo check && marked[v]
             path.add(0,previous[v]);
             printSPbis(previous[v],path);
         }
-        System.out.println(path.toString());
-
-        System.out.println(graph.getNodes()[path.get(0)].getNom());
-        for (int i = 1; i <path.size(); i++) {
-            System.out.print(graph.getNodes()[path.get(i)].getNom());
-            if(this.getClass()==DijkstraSP.class){
-                System.out.println( "\t \t  \t \t distance from previous : "+graph.getDistance(path.get(i-1),path.get(i)));
-            }else {
-                System.out.println();
+        if(display){
+            System.out.println(path.toString());
+            System.out.println(graph.getNodes()[path.get(0)].getNom());
+            for (int i = 1; i <path.size(); i++) {
+                System.out.print(graph.getNodes()[path.get(i)].getNom());
+                if(this.getClass()==DijkstraSP.class){
+                    System.out.println( "\t \t  \t \t distance from previous : "+graph.getDistance(path.get(i-1),path.get(i)));
+                }else {
+                    System.out.println();
+                }
             }
+        }else {
+            fillNodesBetweenness(path);
         }
 
     }
@@ -87,6 +106,87 @@ public abstract class ShortestPath {
             path.add(0,previous[v]);
             printSPbis(previous[v],path);
         }
+    }
+
+    protected void createNodesBetweenness(){
+        nodesBetweenness=new ArrayList[graph.getAdj().length];;
+        for (int i = 0; i <graph.getAdj().length; i++) {
+            nodesBetweenness[i]=new ArrayList<>();
+            for (int j = 0; j <graph.getAdj()[i].size(); j++) {
+                nodesBetweenness[i].add(0);
+            }
+        }
+    }
+    protected void fillNodesBetweenness(ArrayList<Integer> path){
+        for (int i = 1; i <path.size(); i++) {
+            try {
+                nodesBetweenness[path.get(i-1)].set(graph.getAdj()[path.get(i-1)].indexOf(path.get(i))  ,
+                        nodesBetweenness[path.get(i-1)].get(graph.getAdj()[path.get(i-1)].indexOf(path.get(i)))+1);
+                nodesBetweenness[path.get(i)].set(graph.getAdj()[path.get(i)].indexOf(path.get(i-1))  ,
+                        nodesBetweenness[path.get(i)].get(graph.getAdj()[path.get(i)].indexOf(path.get(i-1)))+1);
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }
+    }
+
+    protected void removeNodeBetweenness() {
+        int maxArray=0;
+        int maxList=0;
+        for (int i = 0; i <nodesBetweenness.length; i++) {
+            for (int j = 0; j < nodesBetweenness[i].size(); j++) {
+                if(nodesBetweenness[maxArray].get(maxList)<nodesBetweenness[i].get(j)){
+                    maxArray=i;
+                    maxList=j;
+                }
+            }
+        }
+        graph.remove(maxArray,maxList);
+    }
+
+    protected void dispNodesBetweenness(){
+        int maxValue=0;
+        int maxIndex=0;
+        int nb5000=0;
+        int[] repartition=new int[23000];
+        String nodesBeteweeness="";
+        for (int i = 0; i < repartition.length; i++) {
+            repartition[i]=0;
+        }
+        for (int i = 0; i <nodesBetweenness.length; i++) {
+            System.out.println();
+            if(maxValue<Collections.max(nodesBetweenness[i])){
+                maxIndex=i;
+                maxValue=Collections.max(nodesBetweenness[i]);
+            }
+            System.out.print(i+" : "+nodesBetweenness[i].toString());
+            for (int j = 0; j < nodesBetweenness[i].size(); j++) {
+                if(nodesBetweenness[i].get(j)>9000){
+                    nb5000++;
+                    nodesBeteweeness+=nodesBetweenness[i].get(j)+" : "+graph.getNodes()[i].getNom()+" <-> "+ graph.getNodes()[graph.getAdj()[i].get(j)].getNom()+"\n";
+                }
+                repartition[nodesBetweenness[i].get(j)]=repartition[nodesBetweenness[i].get(j)]+1;
+            }
+        }
+        System.out.println(maxIndex + " : "+ maxValue);
+        System.out.println("nb5000 : "+nb5000);
+        int somme=0;
+        int sommetotale=0;
+        for (int i = 0; i <60; i++) {
+            somme=0;
+            System.out.print(i*200+" : \t");
+            for (int j = 0; j < 200; j++) {
+                for (int k = 0; k < repartition[i*200+j]; k++) {
+                    System.out.print("-");
+                    somme++;
+                    sommetotale++;
+                }
+            }
+            System.out.print(somme);
+            System.out.println();
+        }
+        System.out.println(sommetotale);
+        System.out.println(nodesBeteweeness);
     }
 
     protected void print(ArrayList<Integer> pathSet) {
@@ -121,6 +221,15 @@ public abstract class ShortestPath {
             clone.add(listToClone.get(i));
         }
         return clone;
+    }
+
+    public int sizeSubGraph(){
+        int sizeSubGraph=0;
+        for (int i = 0; i < marked.length; i++) {
+            if(marked[i]){
+                sizeSubGraph++;
+            }
+        }return sizeSubGraph;
     }
 
     public boolean haspathTo(int v){

@@ -10,11 +10,13 @@ public class BFSShortestPaths extends ShortestPath{
 
 
 
-    public BFSShortestPaths(Graph graph, String name,String name2) {
-        super(graph,name,name2);
+    public BFSShortestPaths(Graph graph, String name,String name2,boolean basic) {
+        super(graph,name,name2,basic);
+        if(basic){
+            //exploreStart(s,true);
+            excentricity(basic);
+        }
 
-        //exploreStart(s);
-        excentricity();
     }
 
 
@@ -27,6 +29,11 @@ public class BFSShortestPaths extends ShortestPath{
         this.previous=new Integer[graph.getGraphOrder()];
         this.distance=new Double[graph.getGraphOrder()];
         this.pathSet = new LinkedHashSet<Integer>();
+        for (int i = 0; i < distance.length; i++) {
+            distance[i]=-1.0;
+            previous[i]=-1;
+            marked[i]=false;
+        }
 
         ArrayList<Integer> stack=new ArrayList<>();
         Double currentDistance=0.0;
@@ -60,6 +67,11 @@ public class BFSShortestPaths extends ShortestPath{
                         }
                     }
                 }
+            }
+        }
+        if(!basic){
+            for (int i = 0; i < distance.length; i++) {
+                printSP(i,dispResult);
             }
         }
         if(dispResult){

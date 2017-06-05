@@ -108,7 +108,20 @@ public double getDistance(int id1, int id2){
         Math.pow(Double.parseDouble(nodes[id1].getLng())-(Double.parseDouble(nodes[id2].getLng())),2) ) ))*40000/360;
 
         }
-
+public void remove(int idA, int idB){
+    int idAbis=getAdj()[idA].get(idB);
+    int idBbis=0;
+    for (int i = 0; i < adj[idAbis].size(); i++) {
+        if(adj[idAbis].get(i)==idA){
+            System.out.println("edge to remove : "+nodes[idAbis].getNom()+" <-> "+nodes[adj[idAbis].get(i)].getNom());
+            idBbis=i;
+        }
+    }
+    //System.out.println(nodes[idAbis].getNom()+"  "+nodes[adj[idAbis].get(idBbis)].getNom());
+    adj[idAbis].remove(idBbis);
+    //System.out.println(nodes[idA].getNom()+"  "+nodes[adj[idA].get(idB)].getNom());
+    adj[idA].remove(idB);
+}
 
 public Node[] getNodes() {
         return nodes;

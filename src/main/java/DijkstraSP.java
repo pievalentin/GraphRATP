@@ -6,13 +6,18 @@ import java.util.*;
 public class DijkstraSP extends ShortestPath{
 
 
-    public DijkstraSP(Graph graph, String name,String name2) {
-        super(graph,name,name2);
+    public DijkstraSP(Graph graph, String name,String name2,boolean basic) {
+        super(graph,name,name2,basic);
 
-       // exploreStart(this.s,true);
-       // printSP(this.t);
-        excentricity();
+        if(basic){
+            //exploreStart(this.s,true);
+            //printSP(this.t,true);
+            excentricity(basic);
+        }
+
+
     }
+
 
     void exploreStart(int s,boolean dispResult){
         if (dispResult){
@@ -44,7 +49,7 @@ public class DijkstraSP extends ShortestPath{
 
             //}
             int interation=0;
-            while (!allMarked() ){
+            while (!allMarked()&& interation<3000 ){
                 interation++;
                //System.out.println("iteration : "+interation);
 
@@ -91,6 +96,13 @@ public class DijkstraSP extends ShortestPath{
                     }
                 }
             }
+        //printSP(Arrays.asList(distance).indexOf(maxValue(distance)),dispResult);
+        if(!basic){
+            for (int i = 0; i < distance.length; i++) {
+                printSP(i,dispResult);
+            }
+        }
+
         if(dispResult){
             System.out.print("marked : ");disp(marked);
             System.out.print("distances : ");disp(distance);
