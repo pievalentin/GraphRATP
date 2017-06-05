@@ -13,7 +13,7 @@ public class Main {
           *  true : ex3;
           *  false : ex4 // choose only one algorithm for ex 4
          */
-       //ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"","",false);
-       ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"1","5",false);
+       ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",true);
+       ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",true  );
     }
 }

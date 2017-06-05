@@ -8,12 +8,11 @@ import java.util.LinkedHashSet;
 public class BFSShortestPaths extends ShortestPath{
 
 
-
-
     public BFSShortestPaths(Graph graph, String name,String name2,boolean basic) {
         super(graph,name,name2,basic);
         if(basic){
             //exploreStart(s,true);
+            //printSP(this.t,true);
             excentricity(basic);
         }
 
