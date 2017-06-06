@@ -8,14 +8,6 @@ public class DijkstraSP extends ShortestPath{
 
     public DijkstraSP(Graph graph, String name,String name2,boolean basic) {
         super(graph,name,name2,basic);
-
-        if(basic){
-            //exploreStart(this.s,true);
-            //printSP(this.t,true);
-            excentricity(basic);
-        }
-
-
     }
 
 

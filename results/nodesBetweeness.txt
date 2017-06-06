@@ -1,0 +1,9 @@
+4096+4097 :8193: Palais-Royal (Musée du Louvre) <-> Louvre-Rivoli
+4174+4176 :8350: Louvre-Rivoli <-> Châtelet
+4241+4241 :8482: HÃ´tel de Ville <-> Châtelet
+4305+4290 :8595: Place de Clichy <-> La Fourche 
+4859+4827 :9686: Saint-Michel <-> Odéon
+4929+4962 :9891: Saint-Michel <-> Cité 
+5077+5043 :10120: Châtelet <-> Cité
+5855+5825 :11680: Madeleine <-> Concorde
+

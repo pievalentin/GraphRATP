@@ -25,7 +25,16 @@ public abstract class ShortestPath {
         this.s=graph.indexOfName(name);
         this.t=graph.indexOfName(name2);
         int iteration=0;
-        if(!basic){
+
+        if(basic){//exe 3
+            //afficher le chemin entre deux stations
+            //exploreStart(s,true);
+            //printSP(this.t,true);
+
+            //excentricity(basic);
+        }
+
+        if(!basic){//ex 4
             do{
                 System.out.println();
                 System.out.print("iteration : "+(iteration++));
