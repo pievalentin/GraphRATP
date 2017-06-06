@@ -32,7 +32,7 @@ public abstract class ShortestPath {
                 createNodesBetweenness();
                 excentricity(basic);
                 //dispNodesBetweenness();
-                System.out.println("size of sub Graph : "+sizeSubGraph());
+                System.out.println("Order of sub Graph : "+sizeSubGraph());
                 removeNodeBetweenness();
 
 
