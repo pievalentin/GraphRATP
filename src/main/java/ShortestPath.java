@@ -31,9 +31,10 @@ public abstract class ShortestPath {
                 System.out.print("iteration : "+(iteration++));
                 createNodesBetweenness();
                 excentricity(basic);
+                //dispNodesBetweenness();
                 System.out.println("size of sub Graph : "+sizeSubGraph());
                 removeNodeBetweenness();
-                //dispNodesBetweenness();
+
 
             }while (sizeSubGraph()>1);
         }
