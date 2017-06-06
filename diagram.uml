@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="530.0" y="67.5">Ligne</node>
+    <node x="533.5" y="303.0">ReadJSON</node>
+    <node x="202.25" y="774.0">BFSShortestPaths</node>
+    <node x="245.0" y="0.0">Node</node>
+    <node x="53.25" y="774.0">DijkstraSP</node>
+    <node x="213.25" y="276.0">Graph</node>
+    <node x="0.0" y="417.0">ShortestPath</node>
+    <node x="298.5" y="861.0">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="BFSShortestPaths" target="ShortestPath">
+      <point x="0.0" y="-18.5" />
+      <point x="290.25" y="749.0" />
+      <point x="306.0" y="749.0" />
+      <point x="102.0" y="153.5" />
+    </edge>
+    <edge source="ShortestPath" target="Graph">
+      <point x="0.0" y="-153.5" />
+      <point x="204.0" y="392.0" />
+      <point x="262.25" y="392.0" />
+      <point x="-49.0" y="45.5" />
+    </edge>
+    <edge source="Main" target="BFSShortestPaths">
+      <point x="-24.0" y="-18.5" />
+      <point x="322.5" y="836.0" />
+      <point x="290.25" y="836.0" />
+      <point x="0.0" y="18.5" />
+    </edge>
+    <edge source="Graph" target="Node">
+      <point x="0.0" y="-45.5" />
+      <point x="-66.25" y="113.0" />
+    </edge>
+    <edge source="ReadJSON" target="Node">
+      <point x="-33.0" y="-18.5" />
+      <point x="566.5" y="251.0" />
+      <point x="443.75" y="251.0" />
+      <point x="66.25" y="113.0" />
+    </edge>
+    <edge source="DijkstraSP" target="ShortestPath">
+      <point x="0.0" y="-18.5" />
+      <point x="117.75" y="749.0" />
+      <point x="102.0" y="749.0" />
+      <point x="-102.0" y="153.5" />
+    </edge>
+    <edge source="Main" target="Graph">
+      <point x="24.0" y="-18.5" />
+      <point x="370.5" y="836.0" />
+      <point x="418.5" y="836.0" />
+      <point x="418.5" y="392.0" />
+      <point x="360.25" y="392.0" />
+      <point x="49.0" y="45.5" />
+    </edge>
+    <edge source="ReadJSON" target="Ligne">
+      <point x="33.0" y="-18.5" />
+      <point x="0.0" y="45.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6000000000000001" x="411.6666666666665" y="1160.8333333333333" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
