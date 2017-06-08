@@ -31,7 +31,7 @@ public abstract class ShortestPath {
             //exploreStart(s,true);
             //printSP(this.t,true);
 
-            //excentricity(basic);
+            excentricity(basic);
         }
 
         if(!basic){//ex 4
@@ -40,7 +40,7 @@ public abstract class ShortestPath {
                 System.out.print("iteration : "+(iteration++));
                 createNodesBetweenness();
                 excentricity(basic);
-                //dispNodesBetweenness();
+                //dispNodesBetweenness();// if activated : choose one iteration of Do/While
                 System.out.println("Order of sub Graph : "+sizeSubGraph());
                 removeNodeBetweenness();
 

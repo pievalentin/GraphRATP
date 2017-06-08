@@ -3,34 +3,72 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="409.0">Ligne</node>
-    <node x="0.0" y="207.0">ReadJSON</node>
-    <node x="0.0" y="106.0">BFSShortestPaths</node>
-    <node x="205.0" y="308.0">Node</node>
-    <node x="300.0" y="106.0">DijkstraSP</node>
-    <node x="0.0" y="308.0">Graph</node>
-    <node x="154.75" y="0.0">ShortestPath</node>
-    <node x="199.0" y="409.0">Main</node>
+    <node x="540.3499999999999" y="0.0">Ligne</node>
+    <node x="462.09999999999997" y="106.0">ReadJSON</node>
+    <node x="0.0" y="318.0">BFSShortestPaths</node>
+    <node x="323.34999999999997" y="0.0">Node</node>
+    <node x="300.0" y="318.0">DijkstraSP</node>
+    <node x="282.09999999999997" y="106.0">Graph</node>
+    <node x="162.22499999999997" y="212.0">ShortestPath</node>
+    <node x="298.95" y="424.0">Main</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="Main" target="DijkstraSP">
+      <point x="0.0" y="-28.0" />
+      <point x="373.95" y="399.0" />
+      <point x="400.5" y="399.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
     <edge source="BFSShortestPaths" target="ShortestPath">
       <point x="0.0" y="-28.0" />
-      <point x="140.0" y="81.0" />
-      <point x="212.5" y="81.0" />
+      <point x="140.0" y="293.0" />
+      <point x="219.97499999999997" y="293.0" />
       <point x="-57.75" y="28.0" />
+    </edge>
+    <edge source="ShortestPath" target="Graph">
+      <point x="0.0" y="-28.0" />
+      <point x="277.72499999999997" y="187.0" />
+      <point x="322.09999999999997" y="187.0" />
+      <point x="-40.0" y="28.0" />
+    </edge>
+    <edge source="Main" target="BFSShortestPaths">
+      <point x="-50.0" y="-28.0" />
+      <point x="323.95" y="399.0" />
+      <point x="140.0" y="399.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="Graph" target="Node">
+      <point x="0.0" y="-28.0" />
+      <point x="-38.75" y="28.0" />
+    </edge>
+    <edge source="ReadJSON" target="Node">
+      <point x="-51.75" y="-28.0" />
+      <point x="513.8499999999999" y="81.0" />
+      <point x="439.59999999999997" y="81.0" />
+      <point x="38.75" y="28.0" />
     </edge>
     <edge source="DijkstraSP" target="ShortestPath">
       <point x="0.0" y="-28.0" />
-      <point x="400.5" y="81.0" />
-      <point x="328.0" y="81.0" />
+      <point x="400.5" y="293.0" />
+      <point x="335.47499999999997" y="293.0" />
       <point x="57.75" y="28.0" />
     </edge>
+    <edge source="Main" target="Graph">
+      <point x="50.0" y="-28.0" />
+      <point x="423.95" y="399.0" />
+      <point x="511.5" y="399.0" />
+      <point x="511.5" y="187.0" />
+      <point x="402.09999999999997" y="187.0" />
+      <point x="40.0" y="28.0" />
+    </edge>
+    <edge source="ReadJSON" target="Ligne">
+      <point x="51.75" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.9" x="518.6666666666666" y="560.1111111111111" />
-  <SelectedNodes>
-    <node>ShortestPath</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.4000000000000004" x="463.57142857142844" y="269.4999999999999" />
+  <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

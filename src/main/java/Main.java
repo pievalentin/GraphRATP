@@ -12,14 +12,16 @@ public class Main {
          *basic:
           *  true : ex3;
           *  false : ex4 // choose only one algorithm for ex 4
+          *
+          *  more choices in ShortestPath constructor
          */
 
         //exe 3 | l'affichage du chemin entre deux point est désactivé, il correspond aux lignes 31 et 32 de ShortestPath.
-        ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",true);
-        ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",true  );
+        //ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",true);
+        //ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",true  );
 
         //ex4 : select only one of both algorithm
-        //ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",false);
-        //ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",false  );
+        //ShortestPath bfsShortestPaths2 = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",false);
+        ShortestPath dijkstraSP2=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",false  );
     }
 }
