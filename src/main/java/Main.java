@@ -17,11 +17,11 @@ public class Main {
          */
 
         //exe 3 | l'affichage du chemin entre deux point est désactivé, il correspond aux lignes 31 et 32 de ShortestPath.
-        //ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",true);
-        //ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",true  );
+        ShortestPath bfsShortestPaths = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",true);
+        ShortestPath dijkstraSP=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",true  );
 
         //ex4 : select only one of both algorithm
         //ShortestPath bfsShortestPaths2 = new BFSShortestPaths(new Graph(),"Bercy","Hôtel de Ville",false);
-        ShortestPath dijkstraSP2=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",false  );
+        //ShortestPath dijkstraSP2=new DijkstraSP(new Graph(),"Bercy","Hôtel de Ville",false  );
     }
 }
