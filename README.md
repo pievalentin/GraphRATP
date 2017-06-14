@@ -17,7 +17,7 @@ Installez les dependences avec Maven :
 
 (Le projet a une seule dépendence / *the project has one dependence* : [Jackson](https://github.com/FasterXML/jackson))
 
-*See more lauching details and options in class Main : \src\main\java\Main.java* 
+*See more lauching details and options in class Main : \src\main\java\Main.java]*
 
 Le programme s’exécute dans la classe Main [situé à ici : \src\main\java\Main.java](https://github.com/Focom/GraphRATP/blob/master/src/main/java/Main.java), il affiche
 tout d’abord l’adjacency list puis exécute les exercices.
